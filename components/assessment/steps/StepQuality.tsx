@@ -11,7 +11,14 @@ function clamp01(n: number) {
   return Math.min(1, Math.max(0, n));
 }
 
-export function StepQuality({ data, setData }: Props) {
+function parseNumber(value: string) {
+  // поддержка "0,75" -> 0.75
+  const normalized = value.replace(",", ".");
+  const n = Number(normalized);
+  return Number.isFinite(n) ? n : 0;
+}
+
+export default function StepQuality({ data, setData }: Props) {
   const { methodQuality, procedureQuality } = data.quality;
 
   const update = (field: "methodQuality" | "procedureQuality", value: number) => {
@@ -32,37 +39,65 @@ export function StepQuality({ data, setData }: Props) {
         Укажите, насколько качественно выбран метод экспертизы и насколько корректно проведена процедура оценки.
       </p>
 
+      {/* methodQuality */}
       <div className="border rounded-lg p-4 mb-4">
         <div className="flex items-center justify-between mb-2">
           <div className="font-medium">Качество экспертного метода</div>
-          <div className="text-sm tabular-nums">{methodQuality.toFixed(2)}</div>
         </div>
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step={0.01}
-          value={methodQuality}
-          onChange={(e) => update("methodQuality", Number(e.target.value))}
-          className="w-full"
-        />
+
+        <div className="flex items-center gap-3">
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={methodQuality}
+            onChange={(e) => update("methodQuality", Number(e.target.value))}
+            className="flex-1"
+          />
+
+          <input
+            type="number"
+            min={0}
+            max={1}
+            step={0.01}
+            value={methodQuality}
+            onChange={(e) => update("methodQuality", parseNumber(e.target.value))}
+            className="w-20 border rounded px-2 py-1 text-sm tabular-nums"
+          />
+        </div>
+
         <div className="text-xs text-gray-500 mt-2">0 — плохо, 1 — отлично</div>
       </div>
 
+      {/* procedureQuality */}
       <div className="border rounded-lg p-4">
         <div className="flex items-center justify-between mb-2">
           <div className="font-medium">Качество процедуры оценки</div>
-          <div className="text-sm tabular-nums">{procedureQuality.toFixed(2)}</div>
         </div>
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step={0.01}
-          value={procedureQuality}
-          onChange={(e) => update("procedureQuality", Number(e.target.value))}
-          className="w-full"
-        />
+
+        <div className="flex items-center gap-3">
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={procedureQuality}
+            onChange={(e) => update("procedureQuality", Number(e.target.value))}
+            className="flex-1"
+          />
+
+          <input
+            type="number"
+            min={0}
+            max={1}
+            step={0.01}
+            value={procedureQuality}
+            onChange={(e) => update("procedureQuality", parseNumber(e.target.value))}
+            className="w-20 border rounded px-2 py-1 text-sm tabular-nums"
+          />
+        </div>
+
         <div className="text-xs text-gray-500 mt-2">0 — плохо, 1 — отлично</div>
       </div>
     </div>

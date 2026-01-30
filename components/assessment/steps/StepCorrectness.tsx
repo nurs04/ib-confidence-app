@@ -142,9 +142,19 @@ export default function StepCorrectness({ data, setData }: Props) {
                   }
                   className="flex-1"
                 />
-                <span className="w-12 text-right text-sm">
-                  {indicator.value.toFixed(2)}
-                </span>
+                <input
+                  type="number"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={indicator.value}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    const clamped = Math.min(1, Math.max(0, isNaN(v) ? 0 : v));
+                    updateIndicatorValue(domain.id, indicator.id, clamped);
+                  }}
+                  className="w-20 border rounded px-2 py-1 text-sm tabular-nums"
+                />
               </div>
             </div>
           ))}
