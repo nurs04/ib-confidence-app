@@ -23,7 +23,7 @@ const steps = [
 const initialData: AssessmentData = {
   correctness: { domains: [] },
   effectiveness: { processes: [] },
-  quality: { methodQuality: 0.8, procedureQuality: 0.8 },
+  quality: { methodCorrectness: 0.8, procedureCorrectness: 0.8, methodEffectiveness: 0.8, procedureEffectiveness: 0.8, },
   experts: { correctnessExpertise: 0.8, effectivenessExpertise: 0.8 },
   threats: { knownThreatsCredibility: 80, newThreatsCredibility: 80 },
 };

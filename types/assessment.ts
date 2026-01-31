@@ -9,7 +9,7 @@ export type HarringtonLevel =
 
 export type MaturityLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
-// ---------- Корректность ИБ ----------
+// ---------- Корректность ИБ ---------- 
 
 export interface CorrectnessIndicator {
   id: string;
@@ -41,10 +41,12 @@ export interface EffectivenessAssessment {
 
 // ---------- Качество оценки ----------
 
-export interface AssessmentQuality {
-  methodQuality: number;    // 0..1
-  procedureQuality: number; // 0..1
-}
+export type QualityInput = {
+  methodCorrectness: number;   // ξMk
+  procedureCorrectness: number; // ξLk
+  methodEffectiveness: number;  // ξMe
+  procedureEffectiveness: number; // ξLe
+};
 
 // ---------- Эксперты ----------
 
@@ -65,7 +67,7 @@ export interface ThreatKnowledge {
 export interface AssessmentData {
   correctness: CorrectnessAssessment;
   effectiveness: EffectivenessAssessment;
-  quality: AssessmentQuality;
+  quality: QualityInput;
   experts: ExpertBackground;
   threats: ThreatKnowledge;
 }

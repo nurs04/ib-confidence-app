@@ -36,7 +36,7 @@ export default function ProcessesRadarChart({ items }: Props) {
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data}>
           <PolarGrid strokeOpacity={0.25} />
-          <PolarAngleAxis dataKey="name" />
+          <PolarAngleAxis dataKey="name"/>
           <PolarRadiusAxis domain={[0, 5]} tickCount={6} />
 
           <Tooltip

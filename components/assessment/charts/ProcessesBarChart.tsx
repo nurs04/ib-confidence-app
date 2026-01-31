@@ -27,16 +27,17 @@ export default function ProcessesBarChart({ items }: Props) {
   }));
 
   return (
-    <div className="h-80">
+    <div className="h-90">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 50 }}>
+        <BarChart data={data} margin={{ top: 10, right: 40, left: 0, bottom: 60 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="name"
             interval={0}
-            angle={0}
+            angle={-20}
             textAnchor="end"
-            height={30}
+            height={20}
+            dy={20}
           />
           <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
           <Tooltip />
